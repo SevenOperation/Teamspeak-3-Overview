@@ -5,9 +5,11 @@ $resultC = "1";
 $clientArray = array(array());
 $channelArray = array();
 $position = 0;
-function auslesenHTML(){
+
+//this the only method you need to call from outside
+function parseToHTML(){
  global $adminname , $admin_password;
- popen("sh ".__DIR__."/getClients.sh " . $adminname ." " . $admin_password ."","r");
+ popen("sh ".__DIR__."/getClients.sh  $adminname $admin_password","r");
  popen("sh ".__DIR__."/getChannels.sh $adminname $admin_password","r");
 	echo "<div style='color:white; width: 100%'>";	
 	global $channelArray, $clientArray , $resultC , $position, $resultN, $path;
