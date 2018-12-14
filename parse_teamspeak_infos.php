@@ -6,7 +6,28 @@ $clientArray = array(array());
 $channelArray = array();
 $position = 0;
 
-//this the only method you need to call from outside
+
+//This method returns a small javascript which repeates the character in a *spacer, onload of the window, until the end of the screen width is reached
+function getJavaScript(){
+return "\r\n window.onload = function() {
+repeat_char();
+} 
+function repeat_char(){ 
+var to_repeat = document.getElementsByClassName('repeated');
+var finalstring = '';
+for(var x = 0; x < to_repeat.length; x++) {
+var size = parseFloat(window.getComputedStyle(to_repeat[x],null).getPropertyValue('font-size')) * 2; 
+var repeat = screen.width / size;
+finalstring = '';
+var char = to_repeat[x].innerHTML;
+for (var y = 0; y < repeat; y++) { 
+finalstring += char; } 
+to_repeat[x].innerHTML = finalstring }
+}"; 
+}
+
+
+//this an the method above are the only ones you need to call from outside
 function parseToHTML(){
  global $adminname , $admin_password;
  popen("sh ".__DIR__."/getClients.sh  $adminname $admin_password","r");
@@ -32,10 +53,8 @@ function parseToHTML(){
 		echo "<div id='$resultC'style='width:50%; margin: auto; text-align: center'><p>$spacer[1]</p>" .getClientsInChannel($resultC). "</div>";
 		}
 		elseif(strpos($resultN,"*spacer")){
-		echo "<div id='$resultC'style='margin: auto;'><p>";
-		for($i = 0; $i < 200; $i++){
+		echo "<div id='$resultC'style='margin: auto;'><p class='repeated' style='font-family:Times New Roman'>";
 		echo "$spacer[1]";
-		}
 		echo "</p>" .getClientsInChannel($resultC). "</div>";
 		}elseif(strpos($resultN,"spacer")){
                 echo "<div id='$resultC'style='width:50%; margin: auto; height: 19px'>". getClientsInChannel($resultC) . "</div>";
