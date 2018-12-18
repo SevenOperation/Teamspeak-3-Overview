@@ -17,13 +17,13 @@ var to_repeat = document.getElementsByClassName('repeated');
 var finalstring = '';
 for(var x = 0; x < to_repeat.length; x++) {
 var size = parseFloat(window.getComputedStyle(to_repeat[x],null).getPropertyValue('font-size')) * 2; 
-var repeat = screen.width / size;
+var repeat = parseInt(document.getElementById('teamspeak-overview').offsetWidth / size);
 finalstring = '';
 var char = to_repeat[x].innerHTML;
 for (var y = 0; y < repeat; y++) { 
 finalstring += char; } 
 to_repeat[x].innerHTML = finalstring }
-}"; 
+}";
 }
 
 
@@ -32,7 +32,7 @@ function parseToHTML(){
  global $adminname , $admin_password;
  popen("sh ".__DIR__."/getClients.sh  $adminname $admin_password","r");
  popen("sh ".__DIR__."/getChannels.sh $adminname $admin_password","r");
-	echo "<div style='color:white; width: 100%'>";	
+	echo "<div id='teamspeak-overview' style='color:white; width: 100%'>";	
 	global $channelArray, $clientArray , $resultC , $position, $resultN, $path;
   	while($resultC !== false){
                 $resultC = getClientInfo("cid=",$position);
