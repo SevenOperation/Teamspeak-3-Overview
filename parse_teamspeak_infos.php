@@ -37,7 +37,7 @@ function parseToHTML(){
   	while($resultC !== false){
                 $resultC = getClientInfo("cid=",$position);
                 $resultN = getClientInfo("client_nickname=",$position);
-		if(strpos($resultN,"serveradmin\sfrom\s[::1]") === false){
+		if(strpos($resultN,"serveradmin") === false){
                 if(!isset($clientArray[$resultC])) $clientArray[$resultC] = array();
 		array_push($clientArray[$resultC],$resultN);
 		}
