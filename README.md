@@ -1,7 +1,8 @@
 # Teamspeak-3-Overview
 
 # What should it do
-It should show all rooms and users currently on a teamspeak server.
+It should show all rooms and users currently on a teamspeak server and make it possible to join a specific teamspeak room by clicking on it (only if you have tes
+amspeak3 client installed).
 
 # How does it work
 
